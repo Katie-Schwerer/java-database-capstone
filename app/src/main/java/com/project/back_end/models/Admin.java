@@ -20,7 +20,7 @@ public class Admin {
     private String password;
 
     public Admin() {
-        id = 0;
+        id = 0L;
         username = "";
         password = "";
     }

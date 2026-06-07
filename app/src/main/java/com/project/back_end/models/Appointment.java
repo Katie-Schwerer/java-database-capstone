@@ -54,7 +54,7 @@ public class Appointment {
     }
 
     public Appointment() {
-        id = 0;
+        id = 0L;
         doctor = new Doctor();
         patient = new Patient();
         appointmentTime = LocalDateTime.now();

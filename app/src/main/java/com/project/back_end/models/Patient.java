@@ -1,6 +1,10 @@
 package com.project.back_end.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Id;

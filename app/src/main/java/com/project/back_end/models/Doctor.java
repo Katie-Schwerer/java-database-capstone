@@ -1,6 +1,9 @@
 package com.project.back_end.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Email;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Id;
@@ -39,8 +42,6 @@ public class Doctor {
     @ElementCollection
     private List<String> availableTimes;
 
-// 8. Getters and Setters:
-//    - Standard getter and setter methods are provided for all fields: id, name, specialty, email, password, phone, and availableTimes.
     public Long getId() {
         return id;
     }

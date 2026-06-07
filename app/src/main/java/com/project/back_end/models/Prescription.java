@@ -37,15 +37,15 @@ public class Prescription {
     private String doctorNotes;
 
     public Prescription() {
-        id = 0;
+        id = "0";
         patientName = "";
-        appointmentId = 0;
+        appointmentId = 0L;
         medication = "";
         dosage = "";
         doctorNotes = "";
     }
 
-    public Prescription(Long id, String patientName, Long appointmentId, String mediation, String dosage, String doctorNotes) {
+    public Prescription(String id, String patientName, Long appointmentId, String mediation, String dosage, String doctorNotes) {
         this.id = id;
         this.patientName = patientName;
         this.appointmentId = appointmentId;
@@ -54,11 +54,11 @@ public class Prescription {
         this.doctorNotes = doctorNotes;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long newId) {
+    public void setId(String newId) {
         this.id = newId;
     }
 
