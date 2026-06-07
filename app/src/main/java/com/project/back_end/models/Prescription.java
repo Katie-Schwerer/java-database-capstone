@@ -1,5 +1,16 @@
 package com.project.back_end.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.validation.constraints.NotNull;
+
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
+
 @Document(collection = "prescriptions")
 public class Prescription {
 
