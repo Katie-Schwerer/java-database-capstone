@@ -37,35 +37,28 @@ h2 {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-
 }
-/* 
 
-**Main Section (`.main-content`)**
+button {
+    background-color: #015c5d;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    width: 200px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-* Allow the section to grow to fill space with `flex-grow: 1`.
-* Add `40px` of internal padding.
-* Center content both horizontally and vertically using `justify-content` and `align-items`.
-* Display items in a column direction.
-* Center all text.
-* Apply a full-screen background image with:
+button:hover {
+    background-color: #A62B1F;
+}
 
-  * `cover` size
-  * `center` positioning
-  * no repeat
-  * `fixed` attachment to keep image still during scroll
+.dashboard-btn {
+    background-color: #015c5d;
+}
 
-**Buttons (`button`)**
-
-* Style with a teal green background (`#015c5d`) and white text.
-* Remove borders and round the corners (`12px`).
-* Use `10px 20px` padding and set width to `200px`.
-* Add a top margin of `10px` for spacing.
-* Enable pointer cursor and readable font size (`16px`).
-* On hover, change background color to bold red (`#A62B1F`).
-
-**Dashboard Buttons (`.dashboard-btn`)**
-
-* Use the same base green background (`#015c5d`) as the default button.
-* On hover, darken the background to deep teal (`#003e3e`) for visual feedback.
- */
+.dashboard-btn:hover {
+    background-color: #003e3e;
+}
