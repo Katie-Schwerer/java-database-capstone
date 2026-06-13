@@ -18,57 +18,27 @@
                 <div id="header"></div>
                 <main class="main-content">
                     <input type="text" id="searchBar" placeholder="search by doctor name" />
-                    <select id="timeSearch">
+                    <select id="timeSelect">
                         <option value="AM">AM</option>
                         <option value="PM">PM</option>
                     </select>
+
+                    <select id="specialitySelect">
+                        <option value="cardiologist">Cardiologist</option>
+                        <option value="dentist">Dentist</option>
+                        <option value="doctor">Doctor</option>
+                    </select>
+                    <div id="content"></div>
                 </main>
+                <div id="footer"></div>
+            </div>
+            <div id="modal" class="modal">
+                <span id="closeModal" class="close">&times;</span>
+                <div id="modal-body"></div>
             </div>
         </div>
+        <script type="module" src="../js/services/adminDashboard.js" defer></script>
+        <script type="module" src="../js/components/doctorCard.js" defer></script>
     </body>
 </html>
-<!-- 
-Step-by-Step Explanation of `adminDashboard.html`
-This file creates the Admin Dashboard interface for managing doctor-related data 
-with search, filter, and modal functionality.
-
-
-
-15. Add Filter Dropdowns
-
-    * Use two `<select>` elements:
-      - One for time (AM/PM).
-      - One for filtering by medical specialty (Cardiologist, Dentist, etc.).
-
-16. Add Content Display Area
-
-    * Insert a `<div id="content"></div>` for dynamic injection of doctor cards or data.
-
-17. Add a Footer Placeholder
-
-    * Use `<div id="footer"></div>` for a JavaScript-rendered footer.
-
-18. Add Modal Structure
-
-    * Include a modal with:
-      - A close button (`&times;`)
-      - A content area (`#modal-body`) for displaying popup information or forms.
-
-19. Include Page-Specific JavaScript Modules
-
-    * Load JavaScript specific to the admin dashboard:
-      - `adminDashboard.js` for dashboard logic.
-      - `doctorCard.js` for rendering doctor information cards.
-    * Use `type="module"` and `defer` for modern and non-blocking loading.
-
-    HINT:
-        `<script type="module" src="../../static/js/adminDashboard.js" defer></script>`
-        `<script type="module" src="../../static/js/doctorDashboard.js" defer></script>`
-        
-        
-20. Close the Body and HTML Tags
-
-    * Finish the structure by properly closing all tags.
-
- -->
 
