@@ -1,3 +1,99 @@
+export function createDoctorCard(doctor) {
+    const card = document.createElement("div");
+    card.classList.add("doctor-card");
+
+    const role = localStorage.getItem("userRole");
+
+    const infoDiv = document.createElement("div");
+    infoDiv.classList.add("doctor-info");
+
+    const name = document.createElement("h3");
+    name.textContent = doctor.name;
+
+    const specialization = document.createElement("h3");
+    specialization.textContent = doctor.specialization;
+
+    const email = document.createElement("h3");
+    email.textContent = doctor.email;
+
+    const availability = document.createElement("h3");
+    availability.textContent = doctor.availability;
+
+    infoDiv.appendChild(name);
+    infoDiv.appendChild(specialization);
+    infoDiv.appendChild(email);
+    infoDiv.appendChild(availability);
+
+    const actionsDiv = document.createElement("div");
+    actionsDiv.classList.add("card-actions");
+
+    if (role === "admin") {
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "Delete";
+        removeBtn.addEventListener("click", async () => {
+            // 1. Confirm deletion
+            const confirmed = confirm("Are you sure you want to delete this item?");
+            if (!confirmed) return;
+
+            try {
+                // 2. Get token from localStorage
+                const token = localStorage.getItem("token");
+                if (!token) {
+                    alert("User not authenticated.");
+                    return;
+                }
+
+                // 3. Call API to delete (replace URL with your API endpoint)
+                const response = await fetch("https://your-api-endpoint/delete-item", {
+                    method: "DELETE",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    },
+                    // If needed, include body with item id or details
+                    // body: JSON.stringify({ id: itemId })
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to delete the item.");
+                }
+
+                // 4. On success: remove the card from the DOM
+                // Assuming the button is inside the card element you want to remove
+                const card = removeBtn.closest(".card");
+                if (card) {
+                    card.remove();
+                }
+
+                alert("Item deleted successfully.");
+
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        });
+    } else if (role === "patient") {
+        const bookNow = document.createElement("button");
+        bookNow.textContent = "Book Now";
+        bookNow.addEventListener("click", () => {
+            alert("Patient needs to login first.");
+        });
+    } else if (role === "loggedPatient") {
+        const bookNow = document.createElement("button");
+        bookNow.textContent = "Book Now";
+        bookNow.addEventListener("click", async (e) => {
+            const token = localStorage.getItem("token");
+            const patientData = await getPatientData(token);
+            showBookingOverlay(e, doctor, patientData);
+        });
+    }
+
+    card.appendChild(infoDiv);
+    card.appendChild(actionsDiv);
+
+    return card;
+
+}
+
 /*
 Import the overlay function for booking appointments from loggedPatient.js
 
