@@ -124,11 +124,11 @@ window.loginPatient = async function () {
       localStorage.setItem('token', result.token)
       window.location.href = '/pages/loggedPatientDashboard.html';
     } else {
-      alert('❌ Invalid credentials!');
+      alert('Invalid credentials!');
     }
   }
   catch (error) {
-    alert("❌ Failed to Login : ", error);
+    alert("Failed to Login : ", error);
     console.log("Error :: loginPatient :: ", error)
   }
 

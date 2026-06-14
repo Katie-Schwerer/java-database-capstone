@@ -45,7 +45,7 @@ export async function adminLoginHandler() {
 export async function doctorLoginHandler() {
     try {
         const doctor = { username, password };
-        await fetch(ADMIN_API, {
+        await fetch(DOCTOR_API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(doctor)
