@@ -1,13 +1,39 @@
 package com.project.back_end.repo;
 
-public interface AppointmentRepository  {
+import com.project.back_end.models.Appointment;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-   // 1. Extend JpaRepository:
-//    - The repository extends JpaRepository<Appointment, Long>, which gives it basic CRUD functionality.
-//    - The methods such as save, delete, update, and find are inherited without the need for explicit implementation.
-//    - JpaRepository also includes pagination and sorting features.
+import java.time.LocalDateTime;
+import java.util.List;
 
-// Example: public interface AppointmentRepository extends JpaRepository<Appointment, Long> {}
+@Repository
+public interface AppointmentRepository extends JpaRepository<Appointment, Long>  {
+
+    public List<Appointment> findByDoctorIdAndAppointmentTimeBetween(Long doctorId, LocalDateTime start, LocalDateTime end);
+
+    public List<Appointment> findByDoctorIdAndPatient_NameContainingIgnoreCaseAndAppointmentTimeBetween(Long doctorId, String patientName, LocalDateTime start, LocalDateTime end);
+
+    @Modifying
+    @Transactional
+    public void deleteAllByDoctorId(Long doctorId);
+
+    public List<Appointment> findByPatientId(Long patientId);
+
+    public List<Appointment> findByPatient_IdAndStatusOrderByAppointmentTimeAsc(Long patientId, int status);
+
+    @Query("SELECT a FROM Appointment a WHERE LOWER(a.doctor.name) LIKE LOWER(CONCAT('%', :doctorName, '%')) AND a.patient.id = :patientId")
+    public List<Appointment> filterByDoctorNameAndPatientId(String doctorName, Long patientId);
+
+    @Query("SELECT a FROM Appointment a WHERE LOWER(a.doctor.name) LIKE LOWER(CONCAT('%', :doctorName, '%')) AND a.patient.id = :patientId AND a.status = :status")
+    public List<Appointment> filterByDoctorNameAndPatientIdAndStatus(String doctorName, Long patientId, int status);
+
+    @Modifying
+    @Transactional
+    public void updateStatus(int status, long id);
 
 // 2. Custom Query Methods:
 
@@ -23,32 +49,6 @@ public interface AppointmentRepository  {
 //      - It performs a LEFT JOIN to fetch both the doctor and patient details along with the appointment times.
 //      - Return type: List<Appointment>
 //      - Parameters: Long doctorId, String patientName, LocalDateTime start, LocalDateTime end
-
-//    - **deleteAllByDoctorId**:
-//      - This method deletes all appointments associated with a particular doctor.
-//      - It is marked as @Modifying and @Transactional, which makes it a modification query, ensuring that the operation is executed within a transaction.
-//      - Return type: void
-//      - Parameters: Long doctorId
-
-//    - **findByPatientId**:
-//      - This method retrieves all appointments for a specific patient.
-//      - Return type: List<Appointment>
-//      - Parameters: Long patientId
-
-//    - **findByPatient_IdAndStatusOrderByAppointmentTimeAsc**:
-//      - This method retrieves all appointments for a specific patient with a given status, ordered by the appointment time.
-//      - Return type: List<Appointment>
-//      - Parameters: Long patientId, int status
-
-//    - **filterByDoctorNameAndPatientId**:
-//      - This method retrieves appointments based on a doctor’s name (using a LIKE query) and the patient’s ID.
-//      - Return type: List<Appointment>
-//      - Parameters: String doctorName, Long patientId
-
-//    - **filterByDoctorNameAndPatientIdAndStatus**:
-//      - This method retrieves appointments based on a doctor’s name (using a LIKE query), patient’s ID, and a specific appointment status.
-//      - Return type: List<Appointment>
-//      - Parameters: String doctorName, Long patientId, int status
 
 //    - **updateStatus**:
 //      - This method updates the status of a specific appointment based on its ID.

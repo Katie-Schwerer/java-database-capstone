@@ -15,25 +15,131 @@ public class AppointmentDTO {
     private String patientAddress;
     private LocalDateTime appointmentTime;
     private int status;
-    private LocalDate appointmenDate;
+    private LocalDate appointmentDate;
     private LocalTime appointmentTimeOnly;
     private LocalDateTime endTime;
 
-    public AppointmentDTO(Long id, Long doctorId, String doctorName) {
+    public AppointmentDTO(Long id, Long doctorId, String doctorName, Long patientId, String patientName,
+            String patientEmail, String patientPhone, String patientAddress, LocalDateTime appointmentTime, int status,
+            LocalDate appointmentDate, LocalTime appointmentTimeOnly, LocalDateTime endTime) {
         this.id = id;
         this.doctorId = doctorId;
+        this.doctorName = doctorName;
+        this.patientId = patientId;
+        this.patientName = patientName;
+        this.patientEmail = patientEmail;
+        this.patientPhone = patientPhone;
+        this.patientAddress = patientAddress;
+        this.appointmentTime = appointmentTime;
+        if (appointmentTime != null) {
+            this.appointmentDate = appointmentTime.toLocalDate();
+            this.appointmentTimeOnly = appointmentTime.toLocalTime();
+            this.endTime = appointmentTime.plusHours(1);
+        }
     }
 
     public Long getId() {
         return id;
     }
 
-// 14. Constructor:
-//    - The constructor accepts all the relevant fields for the AppointmentDTO, including simplified fields for the doctor and patient (ID, name, etc.).
-//    - It also calculates custom fields: 'appointmentDate', 'appointmentTimeOnly', and 'endTime' based on the 'appointmentTime' field.
+    public Long getDoctorId() {
+        return doctorId;
+    }
 
-// 15. Getters:
-//    - Standard getter methods are provided for all fields: id, doctorId, doctorName, patientId, patientName, patientEmail, patientPhone, patientAddress, appointmentTime, status, appointmentDate, appointmentTimeOnly, and endTime.
-//    - These methods allow access to the values of the fields in the AppointmentDTO object.
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public Long getPatientId() {
+        return patientId;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public String getPatientEmail() {
+        return patientEmail;
+    }
+
+    public String getPatientPhone() {
+        return patientPhone;
+    }
+
+    public String getPatientAddress() {
+        return patientAddress;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getAppointmenTime() {
+        return appointmentTime;
+    }
+
+    public LocalDate getAppointmentDate() {
+        return appointmenDate;
+    }
+
+    public LocalTime getAppointmentTimeOnly() {
+        return appointmentTimeOnly;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setId(Long newId) {
+        this.id = newId;
+    }
+
+    public void setDoctorId(Long newDoctorId) {
+        this.doctorId = newDoctorId;
+    }
+
+    public void setDoctorName(String newDoctorName) {
+        this.doctorName = newDoctorName;
+    }
+
+    public void setPatientId(Long newPatientId) {
+        this.patientId = newPatientId;
+    }
+
+    public void setPatientName(String newPatientName) {
+        this.patientName = newPatientName;
+    }
+
+    public void setPatientEmail(String newPatientEmail) {
+        this.patientEmail = newPatientEmail;
+    }
+
+    public void setPatientPhone(String newPatientPhone) {
+        this.patientPhone = newPatientPhone;
+    }
+
+    public void setPatientAddress(String newPatientAddress) {
+        this.patientAddress = newPatientAddress;
+    }
+
+    public void setStatus(int newStatus) {
+        this.status = newStatus;
+    }
+
+    public void setAppointmenTime(LocalDateTime newAppointmentTime) {
+        this.appointmentTime = newAppointmentTime;
+    }
+
+    public void setAppointmentDate(LocalDate newAppointmentDate) {
+        this.appointmenDate = newAppointmentDate;
+    }
+
+    public void setAppointmentTimeOnly(LocalTime newAppointmentTimeOnly) {
+        this.appointmentTimeOnly = newAppointmentTimeOnly;
+    }
+
+    public void getEndTime(LocalDateTime newEndTime) {
+        this.endTime = newEndTime;
+    }
 
 }
